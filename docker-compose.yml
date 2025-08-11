@@ -1,0 +1,60 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0
+    container_name: voidkey-keycloak
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTP_PORT=8080
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
+      - KC_HTTP_ENABLED=true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak-init:/opt/keycloak/data/import
+      - keycloak_data:/opt/keycloak/data
+    command: ["start-dev", "--import-realm"]
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080 && echo -e 'GET /realms/master HTTP/1.1\\r\\nHost: localhost:8080\\r\\nConnection: close\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  minio:
+    image: minio/minio:latest
+    container_name: voidkey-minio
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  minio-setup:
+    image: minio/mc:latest
+    container_name: voidkey-minio-setup
+    depends_on:
+      minio:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    volumes:
+      - ./minio-init:/scripts
+    entrypoint: /bin/bash
+    command: |
+      -c "
+      chmod +x /scripts/*.sh &&
+      /scripts/setup-minio.sh &&
+      /scripts/configure-oidc.sh
+      "
+
+volumes:
+  keycloak_data:

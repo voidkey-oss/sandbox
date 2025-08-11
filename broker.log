@@ -1,0 +1,74 @@
+
+> broker-server@0.7.0 dev
+> ts-node src/main.ts
+
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32mFound 2 YAML configuration file(s) in /home/aprzy/voidkey/broker-server/config[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32mLoading configuration from example-config.yaml[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m  - Found 3 client IdP(s)[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m  - Found broker IdP configuration (placeholder)[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m  - Found 3 client identities[39m
+Loading 2 access providers
+✅ Loaded access provider: minio-sandbox (minio-sts)
+✅ Loaded access provider: aws-dev (aws-sts)
+✅ Loading broker IdP: broker-keycloak
+Loading 3 client identities
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m✅ Successfully loaded config from example-config.yaml[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32mLoading configuration from sandbox-config.yaml[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m  - Found 1 client IdP(s)[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m  - Found broker IdP configuration (placeholder)[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m  - Found 1 client identities[39m
+Loading 1 access providers
+✅ Loaded access provider: minio-sandbox (minio-sts)
+✅ Loading broker IdP: keycloak-broker
+Loading 1 client identities
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m✅ Successfully loaded config from sandbox-config.yaml[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[CredentialsService] [39m[32m✅ Configuration loading complete[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHealthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCredentialsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCredentialsController {/credentials}:[39m[38;5;3m +2ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/credentials/idp-providers, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/credentials/mint, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/credentials/keys, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mHealthController {/health}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/health, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 1310398  - [39m07/30/2025, 9:46:20 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +1ms[39m
+🚀 Voidkey broker server is running on: http://localhost:3000
+📡 Credentials endpoint: POST http://localhost:3000/credentials/mint
+🔐 Validating custom IdP token for keycloak-client (real JWT validation)
+⚠️  Audience validation disabled for keycloak-client
+✅ JWT validation successful for subject: 8a99c8d8-4c28-4d2d-8d07-ec27cced122f
+✅ keycloak-client token validated for subject: 8a99c8d8-4c28-4d2d-8d07-ec27cced122f
+🎉 Token validated for subject: 8a99c8d8-4c28-4d2d-8d07-ec27cced122f
+🔍 Using IdP: keycloak-client
+✅ Identity is configured: 8a99c8d8-4c28-4d2d-8d07-ec27cced122f
+🔑 Found key configuration for "MINIO_CREDENTIALS"
+🎯 Provider: minio-sandbox
+🔄 Broker token missing or expired, acquiring new token
+🔐 Acquiring broker token from keycloak-broker
+❌ Key minting failed: Error [ERR_REQUIRE_ESM]: require() of ES Module /home/aprzy/voidkey/broker-core/node_modules/node-fetch/src/index.js from /home/aprzy/voidkey/broker-core/dist/index.js not supported.
+Instead change the require of /home/aprzy/voidkey/broker-core/node_modules/node-fetch/src/index.js in /home/aprzy/voidkey/broker-core/dist/index.js to a dynamic import() which is available in all CommonJS modules.
+    at require.extensions.<computed> [as .js] (/home/aprzy/voidkey/broker-server/node_modules/ts-node/dist/index.js:851:20)
+    at CredentialBroker.acquireBrokerToken (/home/aprzy/voidkey/broker-core/dist/index.js:293:23)
+    at CredentialBroker.ensureValidBrokerToken (/home/aprzy/voidkey/broker-core/dist/index.js:323:27)
+    at CredentialBroker.mintKey (/home/aprzy/voidkey/broker-core/dist/index.js:196:44)
+    at async CredentialsService.mintKeys (/home/aprzy/voidkey/broker-server/src/credentials/credentials.service.ts:117:40) {
+  code: 'ERR_REQUIRE_ESM'
+}
+[31m[Nest] 1310398  - [39m07/30/2025, 9:48:16 AM [31m  ERROR[39m [38;5;3m[CredentialsService] [39m[31mFailed to mint key MINIO_CREDENTIALS:[39m
+[31m[Nest] 1310398  - [39m07/30/2025, 9:48:16 AM [31m  ERROR[39m [38;5;3m[CredentialsService] [39mError: Key minting failed: require() of ES Module /home/aprzy/voidkey/broker-core/node_modules/node-fetch/src/index.js from /home/aprzy/voidkey/broker-core/dist/index.js not supported.
+Instead change the require of /home/aprzy/voidkey/broker-core/node_modules/node-fetch/src/index.js in /home/aprzy/voidkey/broker-core/dist/index.js to a dynamic import() which is available in all CommonJS modules.
+    at CredentialBroker.mintKey (/home/aprzy/voidkey/broker-core/src/index.ts:250:13)
+    at async CredentialsService.mintKeys [90m(/home/aprzy/voidkey/broker-server/[39msrc/credentials/credentials.service.ts:128:30[90m)[39m
+    at async CredentialsController.mintKeys [90m(/home/aprzy/voidkey/broker-server/[39msrc/credentials/credentials.controller.ts:32:12[90m)[39m
+    at async [90m/home/aprzy/voidkey/broker-server/[39mnode_modules/[4m@nestjs[24m/core/router/router-execution-context.js:46:28
+    at async [90m/home/aprzy/voidkey/broker-server/[39mnode_modules/[4m@nestjs[24m/core/router/router-proxy.js:9:17
+[31m[Nest] 1310398  - [39m07/30/2025, 9:48:16 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39mError: Key minting failed: require() of ES Module /home/aprzy/voidkey/broker-core/node_modules/node-fetch/src/index.js from /home/aprzy/voidkey/broker-core/dist/index.js not supported.
+Instead change the require of /home/aprzy/voidkey/broker-core/node_modules/node-fetch/src/index.js in /home/aprzy/voidkey/broker-core/dist/index.js to a dynamic import() which is available in all CommonJS modules.
+    at CredentialBroker.mintKey (/home/aprzy/voidkey/broker-core/src/index.ts:250:13)
+    at async CredentialsService.mintKeys [90m(/home/aprzy/voidkey/broker-server/[39msrc/credentials/credentials.service.ts:128:30[90m)[39m
+    at async CredentialsController.mintKeys [90m(/home/aprzy/voidkey/broker-server/[39msrc/credentials/credentials.controller.ts:32:12[90m)[39m
+    at async [90m/home/aprzy/voidkey/broker-server/[39mnode_modules/[4m@nestjs[24m/core/router/router-execution-context.js:46:28
+    at async [90m/home/aprzy/voidkey/broker-server/[39mnode_modules/[4m@nestjs[24m/core/router/router-proxy.js:9:17
+Killed

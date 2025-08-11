@@ -1,0 +1,63 @@
+{
+  "realm": "broker",
+  "enabled": true,
+  "displayName": "Voidkey Broker Realm",
+  "loginTheme": "keycloak",
+  "accessTokenLifespan": 3600,
+  "sslRequired": "none",
+  "clients": [
+    {
+      "clientId": "broker-service",
+      "name": "Voidkey Broker Service",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "broker-secret-12345",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "access.token.lifespan": "3600"
+      },
+      "protocolMappers": [
+        {
+          "name": "service-account-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "service_account",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "preferred_username",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "audience-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "voidkey-broker",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-broker-service",
+      "enabled": true,
+      "serviceAccountClientId": "broker-service",
+      "attributes": {
+        "service_account": ["broker-service"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "realm": "client",
+  "enabled": true,
+  "displayName": "Voidkey Client Realm",
+  "loginTheme": "keycloak",
+  "accessTokenLifespan": 3600,
+  "sslRequired": "none",
+  "clients": [
+    {
+      "clientId": "cli-client",
+      "name": "Voidkey CLI Client",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "client-secret-67890",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "access.token.lifespan": "3600"
+      },
+      "protocolMappers": [
+        {
+          "name": "service-account-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "service_account",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "preferred_username",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "audience-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "voidkey-broker",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-cli-client",
+      "enabled": true,
+      "serviceAccountClientId": "cli-client",
+      "attributes": {
+        "service_account": ["cli-client"]
+      }
+    }
+  ]
+}
